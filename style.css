@@ -1,0 +1,345 @@
+@charset "utf-8";
+
+/*========= 上部固定させるためのCSS ===============*/
+#header{
+  height: 70px;/*高さ指定*/
+  width:100%;/*横幅指定*/
+  box-sizing: border-box;
+  /*以下はレイアウトのためのCSS*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:#fff;
+  color:#fff;
+  text-align: center;
+  padding: 20px;
+  padding-bottom: 32px;
+  font-family: sans-serif;
+}
+
+/*JSを使いfixedクラスが付与された際の設定*/
+#header.fixed{
+  position: fixed;/*fixedを設定して固定*/
+    z-index: 999;/*最前面へ*/
+    top:0;/*位置指定*/
+    left:0;/*位置指定*/
+}
+
+#footer{
+  /*height: 70px;*/   /*高さ指定*/
+  width:100%;/*横幅指定*/
+  bottom: 0;
+  box-sizing: border-box;
+  align-items: center;
+  background:#fff;;
+  color:#fff;
+  text-align: center;
+  padding: 20px;
+}
+/*========= レイアウトのためのCSS ===============*/
+
+h1{
+  font-size:1.5rem;
+  text-align: center;
+  margin-top:40px;
+  font-family: sans-serif;
+}
+
+h2{
+  font-size:1.3rem;
+  text-align: center;
+  margin-top: 30px;
+  font-family: sans-serif;
+}
+
+h3{
+  font-size:1.1rem;
+  margin: 0px 0 5px 10px;
+  font-family: sans-serif;
+}
+
+p{
+  margin-top:10px; 
+  text-align: left;
+  font-family: sans-serif;
+}
+
+.setumei{
+  font-size: 1.1rem;
+  /* text-align: center; */
+  margin-top:20px;
+}
+
+small{
+  background: #fff;;
+  color: black;
+  display: block;
+  text-align: center;
+  padding:20px;
+}
+
+
+.mainimg img{
+  width: 100%;
+}
+
+.mainbox{
+  text-align: center;
+}
+.mail{
+  width: 80%;
+}
+.mailbox{
+  text-align: center;
+}
+
+.souko img{
+  width: 780px;
+}
+
+.column{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 10px;
+}
+
+/* しおりの画像の大きさ */
+.column img{
+  width:50%;
+  height: auto;
+  margin-top: 40px;
+  justify-content: center;
+  font-size:0;
+}
+
+.box {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.tagtag{
+  justify-content: center;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+.tagtag img{
+  width: 70%;
+  height: auto;
+  margin-top: 40px;
+  justify-content: center;
+  font-size:0;
+}
+
+
+/*==================================================
+グローバルメニュー 共通　横並びのための設定
+===================================*/
+
+.gnavi{
+  display: flex;
+  flex-wrap: wrap;/*スマホ表示折り返し用なのでPCのみなら不要*/
+  margin:70px 0 20px 0;
+  list-style: none;
+}
+
+.gnavi li a{
+  display: block;
+  padding:10px 30px;
+  text-decoration: none;
+  color: #333;
+}
+
+.gnavi li{
+  margin-bottom:10px;
+}
+
+/*==================================================
+　5-3-1 中心から外に線が伸びる（下部）
+===================================*/
+
+.gnavi li a{
+  /*線の基点とするためrelativeを指定*/
+position: relative;
+}
+
+.gnavi li.current a,
+.gnavi li a:hover{
+color:#333232;
+}
+
+.gnavi li a::after {
+  content: '';
+  /*絶対配置で線の位置を決める*/
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  /*線の形状*/
+  width: 80%;
+  height: 2px;
+  background:#e50303;
+  /*アニメーションの指定*/
+  transition: all .3s;
+  transform: scale(0, 1);/*X方向0、Y方向1*/
+  transform-origin: center top;/*上部中央基点*/
+}
+
+/*現在地とhoverの設定*/
+.gnavi li.current a::after,
+.gnavi li a:hover::after {
+  transform: scale(1, 1);/*X方向にスケール拡大*/
+}
+
+
+section{
+  padding:0px 30px 0 30px;
+  background:#fff;
+  max-width: 1000px; 
+  margin: 0 auto;  /*コンテナを中央に配置*/
+}
+
+section:nth-child(2n){
+  background:#fff; 
+}
+
+/*スクロールリンクの形状*/
+.scroll-top {
+	/*表示位置*/
+	position: fixed;
+	right: 20px;
+	bottom: 10px;
+	z-index: 2;
+	/*はじめは非表示*/
+	opacity: 0;
+	visibility: hidden; 
+	transition: opacity .5s, visibility .5s; /*それぞれに0.5秒の変化のアニメーション*/
+	/*縦書き*/
+	-webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+	/*改行禁止*/
+    white-space: nowrap;
+	/*矢印の動き*/
+	animation: arrowmove 1s ease-in-out infinite;
+}
+
+@keyframes arrowmove{
+      0%{bottom:20px;}
+      50%{bottom:25px;}
+     100%{bottom:20px;}
+ }
+
+
+/*.scroll-viewクラスがついたら出現*/
+.scroll-top.scroll-view {
+	opacity: 1;
+	visibility: visible;
+}
+
+/*リンク全体の aタグの形状*/
+.scroll-top a {
+	text-decoration: none;
+	color: #52616b;
+	text-transform: uppercase;
+	font-size:0.9rem;
+    display: block;
+}
+
+/*スクロールリンクの形状*/
+
+.js-scroll a::after{
+	content:"";
+	position: absolute;
+	top:0;
+	right:0;
+	width:1px;
+	height: 50px;
+	background:#52616b;
+}
+
+.js-scroll a::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    right: -6px;
+    width: 1px;
+    height: 20px;
+    background: #52616b;
+    transform: skewX(-31deg);
+}
+
+/*Edge IE11 hack*/
+_:-ms-lang(x), .js-scroll a::before{
+	right:-11px;
+}
+
+/*ページトップリンクの形状*/
+
+.js-pagetop a::after{
+	content:"";
+	position: absolute;
+	top:0;
+	right:0;
+	width:1px;
+	height: 50px;
+	background:#52616b;
+}
+
+.js-pagetop a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -6px;
+    width: 1px;
+    height: 20px;
+    background: #52616b;
+    transform: skewX(31deg);
+}
+
+/*Edge IE11 hack*/
+_:-ms-lang(x), .js-pagetop a::before{
+	right:0;
+}
+
+@media screen and (max-width:480px){
+  
+  .setumei{
+    font-size: 1rem;
+    margin-top:30px;
+  }
+
+  .gnavi{
+    display: flex;
+    flex-wrap: wrap;/*スマホ表示折り返し用なのでPCのみなら不要*/
+    padding: 10px;
+    list-style: none;
+  }
+  .gnavi li a{
+    padding: 10px 20px;
+  }
+
+  .mail{
+    width: 100%;
+  }
+
+  .souko img{
+    width: 300px;
+  }
+  .column img{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .box {
+    width: 75%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+}
